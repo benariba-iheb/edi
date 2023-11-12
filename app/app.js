@@ -1,8 +1,10 @@
-const app = require ('express') ();
+import express from 'express';
+import { get_Customer_id , get_first_name , get_last_name , get_city , get_country , get_phone } from './requetes.js';
+import {start_connection , query , end_connection} from './bdd_conection.js'
+const app = express();
 const PORT = process.env.PORT || 3500;
 
-import express from 'express';
-import {get_customer , get_order , get_orderitem , get_product} from './bdd_conection.js';
+
 
 
 
@@ -10,14 +12,19 @@ app.use(express.urlencoded( {extended : false} ) );
 app.use(express.json());
 
 
-
-app.get("/:id" , async (req , res) => {
+app.get("/*" , (req , res) => {     
+     console.log(req)
+     res.json({message : "hello world"})
+     }
+)
+ 
+/* app.get("/:id" , async (req , res) => {
      const id = req.params.id
-     const order = await get_order(id)
+     const order = await request.get_Customer_id(id)
      res.send(order)
-})
+}) */
 
-app.get("/orderitem/:id" , async (req , res) => { 
+/*app.get("/orderitem/:id" , async (req , res) => { 
      const id = req.params.id 
      const orderitem = await get_orderitem(id)
      res.send(orderitem)
@@ -33,7 +40,7 @@ app.get("/product/:id" , async (req , res) => {
      const id = req.params.id
      const product = await get_product(id)
      res.send(product)
-})
+}) */
 
 
 
@@ -56,6 +63,6 @@ app.all('*' , (req , res) => {
 })
 
 
-app.listen(8080 , () =>{
+app.listen(PORT , () =>{
      console.log('server running')
 })
