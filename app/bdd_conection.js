@@ -9,14 +9,14 @@ const client = new Client({
   password: 'iheb',
 })
 
-async function start_connection(){
+export async function start_connection(){
      await client.connect().then(
           ( res ) => { console.log("connected to database ") } ,
           ( err ) => { console.log("error : " , err) }
      )
 }
 
-async function query(sql_query){
+export async function query(sql_query){
      const result = await client.query(sql_query).then(
           ( res ) => { return res },
           ( err ) => { console.log("error : " , err) }
@@ -25,11 +25,10 @@ async function query(sql_query){
 }
 
 
-async function end_connection() {
+export async function end_connection() {
      await client.end().then(     
           ( res ) => { console.log("disconnected from database ") } ,
           ( err ) => { console.log("error : " , err) }
      )
 }
 
-module.exports = start_connection , query , end_connection
