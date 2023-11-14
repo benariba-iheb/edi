@@ -1,6 +1,6 @@
 import express from 'express';
 import { get_Customer_id , get_order , get_supplier , get_Product , get_order_item } from './requetes.js';
-import {start_connection , query , end_connection} from './bdd_conection.js'
+import {start_connection  , end_connection} from './bdd_conection.js'
 const app = express();
 const PORT = process.env.PORT || 3500;
 
